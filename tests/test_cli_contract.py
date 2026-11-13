@@ -102,10 +102,14 @@ def test_missing_column_exits_with_2(tmp_path):
         {"checkin": "10/01/2025"},
         {"rooms": "dois"},
         {"amount": "cem"},
+        {"rooms": "0"},
+        {"checkin": "2025-01-12", "checkout": "2025-01-10"},
+        {"status": "PENDING"},
+        {"currency": "GBP"},
     ],
 )
-def test_malformed_value_exits_with_2(tmp_path, fields):
-    """Data, quartos ou valor fora do formato são entrada inválida."""
+def test_invalid_reservation_exits_with_2(tmp_path, fields):
+    """Formato inválido, dado inconsistente, status desconhecido ou moeda sem taxa são entrada inválida."""
     arguments = write_inputs(tmp_path, **fields)
 
     assert main([*arguments, "--output", str(tmp_path / "report.json")]) == 2

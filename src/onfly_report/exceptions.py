@@ -7,3 +7,7 @@ class DomainError(Exception):
 
 class InputFileError(DomainError):
     """Arquivo de entrada ausente, ilegível ou fora do formato esperado."""
+
+
+class UnknownCurrencyError(DomainError):
+    """Moeda sem taxa de câmbio na tabela."""
